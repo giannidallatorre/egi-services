@@ -1,0 +1,162 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homepage
+  namespace: torre-ns
+  labels:
+    app.kubernetes.io/name: homepage
+data:
+  kubernetes.yaml: |
+    mode: cluster
+  settings.yaml: |
+    HOMEPAGE_ALLOWED_HOSTS:
+      - gethomepage.dev
+      - 127.0.0.1
+      - localhost
+  custom.css: ""
+  custom.js: ""
+  bookmarks.yaml: |
+    - Developer:
+        - Github:
+            - abbr: GH
+              href: https://github.com/EGI-Federation
+    - Website:
+        - EGI Foundation:
+            - abbr: EGI
+              href: https://www.egi.eu/
+    - Entertainment:
+        - YouTube:
+            - abbr: YT
+              href: https://www.youtube.com/@EGI_eInfra
+  services.yaml: |
+    - EGI Cloud Services:
+        - Rancher:
+            icon: rancher.png
+            href: https://rancher.cloud.e-infra.cz/dashboard/
+            description: EGI Container Compute
+        - Harbor:
+            icon: harbor.png
+            href: https://registry.egi.eu/
+            description: EGI Artefact Registry
+        - Vault:
+            icon: vault.png
+            href: https://vault.services.fedcloud.eu:8200/ui/vault/auth?with=userpass
+            description: EGI Secret store manger
+        - DataHub:
+            icon: unifi-drive.svg 
+            href: https://datahub.egi.eu/ozw/onezone/i#/login 
+            description: EGI DataHub - OneData
+
+        - Keycloak:
+            icon: keycloak.png
+            href: https://aai.egi.eu/
+            description: EGI Authentication & Authorization Infrastructure
+
+        - Infrastructure Manger:
+            icon: kubernetes.png
+            href: https://appsgrycap.i3m.upv.es/
+            description: EGI Cloud orchestrator to deploy and configure complex virtual infrastructures
+
+    - Virtual Organization (VO):
+        - VO list:
+            icon: organizr.png
+            href: https://operations-portal.egi.eu/vo/a/list 
+            description: List of all the Virtual Organization
+
+        - Your VO:
+            icon: organizr.png
+            href: https://dashboard.appdb.egi.eu/vmops
+            description: Your virtual organizations
+        
+        - Operations Portal:
+            icon: organizr.png
+            href: https://operations-portal.egi.eu/
+            description: Portale per la gestione delle operazioni delle VO.
+
+    - OpenStack:
+        - Provider Dashboards:
+            icon: openstack.png
+            href: https://dashboard.cloud.egi.eu/
+            description: You can find here link to the OpenStack dashboards of the EGI FedCloud providers
+    
+    - Monitoring and Accounting:
+        - Grafana:
+            icon: grafana.png
+            href: https://grafana.egi.eu/
+            description: EGI Grafana instance
+
+        - Prometheus:
+            icon: prometheus.png
+            href: https://prometheus.egi.eu/
+            description: EGI Prometheus instance
+        - EGI ARGO Monitoring:
+            icon: monitoring.png
+            href: https://argo.egi.eu/
+            description: Monitoring service for the EGI infrastructure.
+        
+        - EGI Accounting portal:
+            icon: accounting.png
+            href: https://accounting.egi.eu/
+            description: Portal for viewing and filtering information on resource usage.
+
+        - GOCDB:
+            icon: gocdb.png
+            href: https://goc.egi.eu/
+            description: Configuration database for managing information about EGI services and sites.
+
+    - Support and Documentation:
+        - EGI Helpdesk:
+            icon: helpdesk.png
+            href: https://ggus.eu/
+            description: EGI Helpdesk for support requests
+
+        - Documentation:
+            icon: docs.png
+            href: https://docs.egi.eu/
+            description: Documentation for users and providers of EGI services.
+
+        - EGI Training:
+            icon: training.png
+            href: https://training.egi.eu/
+            description: EGI Training resources and courses
+
+        - EGI Community Forum:
+            icon: forum.png
+            href: https://community.egi.eu/
+            description: EGI Community Forum for discussions and announcements
+
+  settings.yaml: |
+
+    providers:
+      openweathermap: openweathermapapikey
+      weatherapi: weatherapiapikey
+    title: "EGI Cloud Dashboard"
+    background:
+      image: https://www.egi.eu/_next/image/?url=https%3A%2F%2Fcdn.egi.eu%2Fapp%2Fuploads%2F2022%2F05%2Fweb-images-38.png&w=3840&q=75 
+      blur: x2
+      saturate: 50
+      brightness: 25
+      opacity: 30
+  widgets.yaml: |
+    - kubernetes:
+        cluster:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+          label: "cluster"
+        nodes:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+    - resources:
+        backend: resources
+        expanded: true
+        cpu: true
+        memory: true
+        network: default
+    - search:
+        provider: duckduckgo
+        target: _blank
+  docker.yaml: ""

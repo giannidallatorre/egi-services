@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homepage
+  namespace: torre-ns
+  labels:
+    app.kubernetes.io/name: homepage
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: homepage
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: homepage
+    spec:
+      serviceAccountName: homepage
+      automountServiceAccountToken: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      containers:
+        - name: homepage
+          image: ghcr.io/gethomepage/homepage:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          env:
+            - name: HOMEPAGE_ALLOWED_HOSTS
+              valueFrom:
+                configMapKeyRef:
+                  name: homepage
+                  key: settings.yaml
+          volumeMounts:
+            - name: homepage-config
+              mountPath: /app/config
+            - name: logs
+              mountPath: /app/config/logs
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
+      initContainers:
+        - name: copy-config
+          image: ghcr.io/gethomepage/homepage:latest
+          command:
+            - sh
+            - -c
+            - |
+              cp -a /app/src/skeleton/. /app/config/
+              cp -a /tmp/config/. /app/config/
+          volumeMounts:
+            - name: homepage-config
+              mountPath: /app/config
+            - name: homepage-config-map
+              mountPath: /tmp/config
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
+      volumes:
+        - name: homepage-config
+          emptyDir: {}
+        - name: homepage-config-map
+          configMap:
+            name: homepage
+        - name: logs
+          emptyDir: {}
