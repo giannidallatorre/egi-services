@@ -1,8 +1,15 @@
 # Homepage Deployment on Kubernetes
 
-Setup and deployment of the Homepage service in Rancher (CESNET).
+Setup and deployment of the Homepage service.
+
+**URLs**: https://home.cloud.egi.eu (primary) | https://homepage.dyn.cloud.e-infra.cz (legacy)
 
 ## Components
+
+- **Ingress**: `homepage-ingress.yaml`
+  - Exposes the service publicly on port 443 (HTTPS)
+  - TLS/SSL configuration with cert-manager
+  - Hosts: `home.cloud.egi.eu` and `homepage.dyn.cloud.e-infra.cz`
 
 - **Deployment**: `homepage-deployment.yaml`
   - Image: `ghcr.io/gethomepage/homepage:latest`
