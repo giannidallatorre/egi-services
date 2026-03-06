@@ -119,32 +119,14 @@ config:
     color: slate
     layout:
       Compute & Cloud Orchestration:
-        style: row
-        columns: 4
       Applications & Platforms (SaaS):
-        style: row
-        columns: 4
       Data & Storage Services:
-        style: row
-        columns: 4
       Identity & VO Management:
-        style: row
-        columns: 4
       Monitoring & Accounting:
-        style: row
-        columns: 4
       Support & Documentation:
-        style: row
-        columns: 4
       Developer:
-        style: row
-        columns: 4
       Website:
-        style: row
-        columns: 4
       Entertainment:
-        style: row
-        columns: 4
 
   custom.css: |
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
