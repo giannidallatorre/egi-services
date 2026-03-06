@@ -123,7 +123,7 @@ config:
       saturate: 20
       brightness: 255
       opacity: 5
-    theme: auto
+    color: slate
 
   custom.css: |
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
@@ -138,7 +138,7 @@ config:
     }
 
     html {
-      font-size: 20px !important;
+      font-size: 22px !important; /* Increased font size for better visibility */
     }
 
     body {
@@ -146,7 +146,7 @@ config:
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Force EGI Colors across BOTH light/dark */
+    /* Force EGI Branding & High Contrast */
     .light body {
       background-color: #ffffff !important;
       color: var(--egi-dark-gray) !important;
@@ -161,32 +161,31 @@ config:
       color: #ffffff !important;
     }
 
-    /* Hide the Color Palette Picker circles - target specifically the color swatches */
-    [role="menuitem"] .rounded-full[style*="background-color"] {
+    /* Surgical Hiding of the Color Picker Button while keeping Theme Toggle */
+    button[title*="Color"], button[aria-label*="Color"], .color-picker {
       display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
     }
-    
-    /* If the above is too specific, try to hide the entire palette section if possible */
-    /* .color-picker-trigger { ... } */
 
     /* Ensure Theme Toggle is prominent */
-    .theme-toggle-container, button[title*="Theme"], button[aria-label*="Theme"] {
-      display: flex !important;
+    button[title*="Theme"], button[aria-label*="Theme"], .theme-toggle {
+      display: inline-flex !important;
       visibility: visible !important;
       opacity: 1 !important;
-      min-width: 44px;
-      min-height: 44px;
     }
 
-    /* Tabs/Group Headers */
+    /* Group Headers */
     .group-header h2 {
       border-bottom: 3px solid var(--egi-orange) !important;
       padding-bottom: 0.5rem !important;
       margin-bottom: 1.5rem !important;
       font-weight: 700 !important;
-      font-size: 1.6rem !important;
+      font-size: 1.7rem !important; /* Larger headers */
     }
 
+    /* Cards */
     .card {
       border: 1px solid var(--egi-border-gray) !important;
       border-radius: 6px !important;
@@ -200,16 +199,10 @@ config:
       background-color: rgba(255, 255, 255, 0.05) !important;
     }
 
-    /* Buttons */
-    .btn-primary, button[type="submit"] {
-      background-color: var(--egi-orange) !important;
-      border-radius: 6px !important;
-      font-weight: 700 !important;
-      color: #ffffff !important;
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar-thumb {
+      background: var(--egi-blue) !important;
     }
-
-    /* Hide Search Widget specific styles if they linger */
-    .search-container { display: none !important; }
 
   kubernetes.yaml: |
     mode: cluster
