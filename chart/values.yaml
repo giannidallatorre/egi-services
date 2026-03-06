@@ -52,13 +52,13 @@ config:
             href: https://aai.egi.eu/
             description: EGI Authentication & Authorization Infrastructure providing secure federated access to EGI services.
         - Operations Portal:
-            icon: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/EGI_Logo.svg/999px-EGI_Logo.svg.png
+            icon: https://www.google.com/s2/favicons?domain=operations-portal.egi.eu&sz=32
             href: https://operations-portal.egi.eu/
             description: VO management platform for VO administration, broadcasts, downtimes, dashboards, metrics, SLA tracking, and VO lists.
         - Your Virtual Organization:
-            icon: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/EGI_Logo.svg/999px-EGI_Logo.svg.png
+            icon: https://www.google.com/s2/favicons?domain=dashboard.appdb.egi.eu&sz=32
             href: https://dashboard.appdb.egi.eu/vmops
-            description: Legacy, should we remove ? Personal dashboard to manage user’s Virtual Organizations and related resources across the infrastructure.
+            description: Personal dashboard to manage user's Virtual Organizations and related resources across the infrastructure.
 
     - Monitoring & Accounting:
         - EGI ARGO Monitoring:
@@ -82,7 +82,7 @@ config:
             href: https://helpdesk.ggus.eu/
             description: Centralized support service for technical requests, incident reports and user assistance tickets.
         - Documentation:
-            icon: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/EGI_Logo.svg/999px-EGI_Logo.svg.png
+            icon: https://www.google.com/s2/favicons?domain=docs.egi.eu&sz=32
             href: https://docs.egi.eu/
             description: Knowledge portal with guides, tutorials and manuals for EGI users and service providers.
         - EGI FedCloud Slack Channel:
@@ -91,13 +91,6 @@ config:
             description: Community channel for announcements, discussions and collaborative support among EGI users.
 
   widgets.yaml: |
-    - resources:
-        backend: resources
-        expanded: true
-        cpu: true
-        memory: true
-        network: default
-
   bookmarks.yaml: |
     - Developer:
         - Github:
@@ -124,6 +117,34 @@ config:
       brightness: 255
       opacity: 5
     color: slate
+    layout:
+      Compute & Cloud Orchestration:
+        style: row
+        columns: 4
+      Applications & Platforms (SaaS):
+        style: row
+        columns: 4
+      Data & Storage Services:
+        style: row
+        columns: 4
+      Identity & VO Management:
+        style: row
+        columns: 4
+      Monitoring & Accounting:
+        style: row
+        columns: 4
+      Support & Documentation:
+        style: row
+        columns: 4
+      Developer:
+        style: row
+        columns: 4
+      Website:
+        style: row
+        columns: 4
+      Entertainment:
+        style: row
+        columns: 4
 
   custom.css: |
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
