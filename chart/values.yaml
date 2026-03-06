@@ -139,7 +139,6 @@ config:
       brightness: 255
       opacity: 5
     theme: auto
-    color: slate
 
   custom.css: |
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
@@ -147,15 +146,14 @@ config:
     :root {
       --egi-blue: #005FAA;
       --egi-orange: #EF8200;
-      --egi-ice-blue: #F1F8FF;
       --egi-dark-blue: #1E325C;
       --egi-light-gray: #F7F6F7;
-      --egi-dark-gray: #454649; /* Darker gray for better text readability */
+      --egi-dark-gray: #454649;
       --egi-border-gray: #E4E4E4;
     }
 
     html {
-      font-size: 18px !important;
+      font-size: 20px !important; /* Visual enhancement */
     }
 
     body {
@@ -163,7 +161,7 @@ config:
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Forced Colors per Guide (Light Mode) */
+    /* Force EGI Colors & Restored Toggle Visibility */
     .light body {
       background-color: #ffffff !important;
       color: var(--egi-dark-gray) !important;
@@ -173,17 +171,27 @@ config:
       color: var(--egi-blue) !important;
     }
 
-    /* Forced Colors per Guide (Dark Mode) */
     .dark body {
       background-color: var(--egi-dark-blue) !important;
       color: #ffffff !important;
     }
 
-    .dark h1, .dark h2, .dark h3, .dark h4, .dark .header-anchor {
-      color: #ffffff !important;
+    /* Hide the Color Palette Picker (keep only Light/Dark toggle) */
+    [id^="headlessui-menu-button"] + div [role="menuitem"]:not(:first-child),
+    .color-picker-button, 
+    #color-picker { 
+      display: none !important; 
     }
 
-    /* Card Styling */
+    /* Tabs/Group Headers */
+    .group-header h2 {
+      border-bottom: 3px solid var(--egi-orange) !important;
+      padding-bottom: 0.5rem !important;
+      margin-bottom: 1.5rem !important;
+      font-weight: 700 !important;
+      font-size: 1.6rem !important;
+    }
+
     .card {
       border: 1px solid var(--egi-border-gray) !important;
       border-radius: 6px !important;
@@ -195,16 +203,6 @@ config:
 
     .dark .card {
       background-color: rgba(255, 255, 255, 0.05) !important;
-      border-color: rgba(255, 255, 255, 0.1) !important;
-    }
-
-    /* Tab/Navigation */
-    .group-header h2 {
-      border-bottom: 3px solid var(--egi-orange) !important;
-      padding-bottom: 0.5rem !important;
-      margin-bottom: 1.5rem !important;
-      font-weight: 700 !important;
-      font-size: 1.5rem !important;
     }
 
     /* Buttons */
@@ -212,16 +210,13 @@ config:
       background-color: var(--egi-orange) !important;
       border-radius: 6px !important;
       font-weight: 700 !important;
-      font-size: 1rem !important;
       color: #ffffff !important;
     }
 
-    /* Hide extraneous components if needed */
-    /* .color-picker-dropdown { display: none !important; } -- placeholder if needed */
-
-    /* Scrollbar */
-    ::-webkit-scrollbar-thumb {
-      background: var(--egi-blue) !important;
+    /* UI Fixes to ensure visibility */
+    .theme-toggle {
+      display: block !important;
+      visibility: visible !important;
     }
 
   kubernetes.yaml: |
