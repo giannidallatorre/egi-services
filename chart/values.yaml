@@ -117,16 +117,6 @@ config:
       brightness: 255
       opacity: 5
     color: slate
-    layout:
-      Compute & Cloud Orchestration:
-      Applications & Platforms (SaaS):
-      Data & Storage Services:
-      Identity & VO Management:
-      Monitoring & Accounting:
-      Support & Documentation:
-      Developer:
-      Website:
-      Entertainment:
 
   custom.css: |
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
