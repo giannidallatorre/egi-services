@@ -118,6 +118,48 @@ config:
       opacity: 5
     color: slate
 
+  custom.js: |
+    // Wait for the DOM to be fully loaded
+    window.addEventListener("load", function() {
+      // Find the main footer container
+      const footer = document.getElementById("footer");
+      if (!footer) return;
+
+      // Find the version wrapper div (which flexes justify-end by default)
+      const flexWrapperPattern = "flex mt-4 w-full justify-end";
+      const outerVersionDiv = Array.from(footer.getElementsByTagName('div')).find(div => 
+        div.className.includes("flex mt-4 w-full")
+      );
+
+      if (outerVersionDiv) {
+        // Change from end-alignment to space-between formatting
+        outerVersionDiv.classList.remove('justify-end');
+        outerVersionDiv.classList.add('justify-between');
+
+        // Create our new EGI Revision left element
+        const egiRevisionDiv = document.createElement("div");
+        egiRevisionDiv.className = "flex flex-row items-center";
+        
+        // Exact same HTML classes as the right side, just different text/link
+        egiRevisionDiv.innerHTML = `
+          <span class="text-xs text-theme-500 dark:text-theme-400">
+            <a href="https://github.com/giannidallatorre/egi-services" target="_blank" rel="noopener noreferrer" class="mr-2 text-xs text-theme-500 dark:text-theme-400 flex flex-row items-center">EGI Revision: {{ .Release.Revision }} ({{ now | date "Mar 02, 2006" }})</a>
+          </span>
+        `;
+        
+        // Insert it as the first element in the wrapper (pushing it to the left)
+        outerVersionDiv.insertBefore(egiRevisionDiv, outerVersionDiv.firstChild);
+      }
+
+      // Hide the color picker button (v1.11.0 compatibility since aria-labels changed)
+      document.querySelectorAll('button').forEach(btn => {
+        if (btn.textContent.includes('Change color')) {
+          btn.style.display = 'none';
+        }
+      });
+    });
+
+
   custom.css: |
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
@@ -152,14 +194,6 @@ config:
     .dark body {
       background-color: var(--egi-dark-blue) !important;
       color: #ffffff !important;
-    }
-
-    /* Surgical Hiding of the Color Picker Button while keeping Theme Toggle */
-    button[title*="Color"], button[aria-label*="Color"], .color-picker {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
     }
 
     /* Ensure Theme Toggle is prominent */

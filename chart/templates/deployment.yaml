@@ -12,10 +12,11 @@ spec:
       {{- include "homepage.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+        checksum/config: {{ .Values.config | toYaml | sha256sum }}
+        {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+        {{- end }}
       labels:
         {{- include "homepage.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
@@ -32,7 +33,7 @@ spec:
       initContainers:
         - name: init-config
           image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          command: ["sh", "-c", "cp /tmp/config/*.yaml /app/config/ 2>/dev/null || true; cp /tmp/config/*.css /app/config/ 2>/dev/null || true"]
+          command: ["sh", "-c", "cp /tmp/config/*.yaml /app/config/ 2>/dev/null || true; cp /tmp/config/*.css /app/config/ 2>/dev/null || true; cp /tmp/config/*.js /app/config/ 2>/dev/null || true"]
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           volumeMounts:
