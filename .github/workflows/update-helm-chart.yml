@@ -62,18 +62,22 @@ jobs:
         env:
           KUBECONFIG_DATA: ${{ secrets.KUBECONFIG }}
         run: |
+          if [ -z "$KUBECONFIG_DATA" ]; then
+            echo "::error::KUBECONFIG secret is missing or empty. Please add it to your GitHub Repository Secrets."
+            exit 1
+          fi
+
           # 1. Create a temporary kubeconfig file from the secret
           mkdir -p ~/.kube
           echo "$KUBECONFIG_DATA" | base64 -d > ~/.kube/config
           chmod 600 ~/.kube/config
+          export KUBECONFIG=~/.kube/config
 
           # 2. Run the deployment with BEST PRACTICE flags:
-          # --atomic: Automatically rolls back if the upgrade fails
-          # --timeout: Sets a limit for the deployment to succeed
-          # --wait: Waits until all pods are ready
           helm upgrade --install homepage ./chart \
+            --kubeconfig ~/.kube/config \
             -f ./chart/values.yaml \
             -n torre-ns \
-            --atomic \
+            --rollback-on-failure \
             --wait \
             --timeout 5m
