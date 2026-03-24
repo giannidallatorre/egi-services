@@ -1,0 +1,62 @@
+name: Check Upstream Updates
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Run daily at midnight
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  check-upstream:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Upstream Version
+        id: upstream
+        run: |
+          # Fetch the raw Chart.yaml from the upstream source
+          UPSTREAM_URL="https://raw.githubusercontent.com/M0NsTeRRR/helm-charts/main/charts/homepage/Chart.yaml"
+          UPSTREAM_CHART=$(curl -s $UPSTREAM_URL)
+          
+          # Extract versions
+          UPSTREAM_VERSION=$(echo "$UPSTREAM_CHART" | yq eval '.version' -)
+          UPSTREAM_APP_VERSION=$(echo "$UPSTREAM_CHART" | yq eval '.appVersion' -)
+          
+          # Extract local versions
+          LOCAL_VERSION=$(yq eval '.version' chart/Chart.yaml)
+          LOCAL_APP_VERSION=$(yq eval '.appVersion' chart/Chart.yaml)
+          
+          echo "Upstream: $UPSTREAM_VERSION ($UPSTREAM_APP_VERSION)"
+          echo "Local: $LOCAL_VERSION ($LOCAL_APP_VERSION)"
+          
+          # Check if there's a difference
+          if [ "$UPSTREAM_VERSION" != "$LOCAL_VERSION" ] || [ "$UPSTREAM_APP_VERSION" != "$LOCAL_APP_VERSION" ]; then
+            echo "NEW_VERSION_AVAILABLE=true" >> $GITHUB_OUTPUT
+            echo "version=$UPSTREAM_VERSION" >> $GITHUB_OUTPUT
+            echo "app_version=$UPSTREAM_APP_VERSION" >> $GITHUB_OUTPUT
+          else
+            echo "NEW_VERSION_AVAILABLE=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Update Local Chart (If New Version Found)
+        if: steps.upstream.outputs.NEW_VERSION_AVAILABLE == 'true'
+        run: |
+          yq eval ".version = \"${{ steps.upstream.outputs.version }}\"" -i chart/Chart.yaml
+          yq eval ".appVersion = \"${{ steps.upstream.outputs.app_version }}\"" -i chart/Chart.yaml
+
+      - name: Create Pull Request
+        if: steps.upstream.outputs.NEW_VERSION_AVAILABLE == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: sync with upstream Homepage Chart ${{ steps.upstream.outputs.version }}"
+          title: "🚀 New Upstream Version Available: ${{ steps.upstream.outputs.version }}"
+          body: |
+            A new version of the upstream [homepage chart](https://github.com/M0NsTeRRR/helm-charts/tree/main/charts/homepage) has been detected.
+            
+            - **New Chart Version**: `${{ steps.upstream.outputs.version }}`
+            - **New App Version**: `${{ steps.upstream.outputs.app_version }}`
+            
+            This PR automatically updates your `Chart.yaml`. Please review for any template changes that might be needed.
+          branch: "upstream-sync"
+          delete-branch: true

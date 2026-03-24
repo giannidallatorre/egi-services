@@ -60,3 +60,39 @@ kubectl rollout restart deployment homepage -n torre-ns
 
 ---
 *Maintained by the EGI Cloud Team.*
+
+## Development & Automation
+
+### Automated Workflow (Recommended)
+This project uses GitHub Actions ([update-helm-chart.yml](.github/workflows/update-helm-chart.yml)) for a full CI/CD pipeline:
+1.  **Version Bump**: Automatically increments the chart version on every push to `main`.
+2.  **Linting**: Validates the Helm chart before any action.
+3.  **Deployment**: Automatically deploys the update to the `torre-ns` namespace.
+4.  **Automatic Rollback**: The deployment uses the `--atomic` flag. If the new version fails to start correctly (e.g., a crash loop), Helm will automatically roll back to the previous stable version.
+
+> [!IMPORTANT]
+> To enable automation, ensure you have added a `KUBECONFIG` secret (base64 encoded) to your GitHub repository settings.
+
+### Manual Operations
+
+#### Deploy / Update
+If you need to deploy manually from your local machine:
+```bash
+helm upgrade --install homepage ./chart -f ./chart/values.yaml -n torre-ns --atomic --wait
+```
+
+#### Monitoring & History
+To see the deployment history and find revision numbers:
+```bash
+helm history homepage -n torre-ns
+```
+
+#### Manual Rollback
+If you need to revert to a specific previous version manually:
+```bash
+# Rollback to the immediate previous version
+helm rollback homepage -n torre-ns
+
+# Rollback to a specific revision (e.g., revision 5)
+helm rollback homepage 5 -n torre-ns
+```
