@@ -11,4 +11,4 @@ name: homepage
 sources:
   - https://github.com/M0NsTeRRR/helm-charts/tree/main/charts/homepage
 type: application
-version: 4.9.1
+version: 4.9.2
