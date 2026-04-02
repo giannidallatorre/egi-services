@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: v1.12.1
+appVersion: v1.12.3
 description: homepage helm chart for Kubernetes
 home: https://github.com/gethomepage/homepage
 icon: https://artifacthub.io/image/e417b561-5fe4-4ee3-9b89-f67df4069169
@@ -11,4 +11,4 @@ name: homepage
 sources:
   - https://github.com/M0NsTeRRR/helm-charts/tree/main/charts/homepage
 type: application
-version: 4.10.1
+version: 4.11.1
