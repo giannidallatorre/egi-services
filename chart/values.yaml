@@ -252,11 +252,15 @@ ingress:
     kubernetes.io/tls-acme: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
   tls:
-    - secretName: homepage-dyn-cloud-e-infra-cz-tls
+    - secretName: homepage-tls
       hosts:
-        # - home.cloud.egi.eu
+        - home.cloud.egi.eu
         - homepage.dyn.cloud.e-infra.cz
   hosts:
+    - host: home.cloud.egi.eu
+      paths:
+        - path: /
+          pathType: Prefix
     - host: homepage.dyn.cloud.e-infra.cz
       paths:
         - path: /
