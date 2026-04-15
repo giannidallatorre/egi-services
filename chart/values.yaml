@@ -1,22 +1,22 @@
 config:
   services.yaml: |
     - Compute & Cloud Orchestration:
-        - Cloud Container Compute:
-            icon: rancher.png
-            href: https://rancher.cloud.e-infra.cz/dashboard/
-            description: Rancher - manage and orchestrate distributed applications on EGI cloud clusters.
-        - Infrastructure Manager:
-            icon: https://www.google.com/s2/favicons?domain=im.egi.eu&sz=32
-            href: https://im.egi.eu/
-            description: Infrastructure Manager - EGI Cloud orchestrator to deploy and configure complex virtual infrastructures.
         - Cloud Compute:
             icon: openstack.png
             href: https://dashboard.cloud.egi.eu/
             description: OpenStack - Access to the OpenStack dashboards of the EGI FedCloud providers.
+        - Cloud Container Compute:
+            icon: rancher.png
+            href: https://rancher.cloud.e-infra.cz/dashboard/
+            description: Rancher - manage and orchestrate distributed applications on EGI cloud clusters.
         - Dynamic DNS:
             icon: https://www.google.com/s2/favicons?domain=fedcloud.eu&sz=32
             href: https://nsupdate.fedcloud.eu/
             description: Dynamic DNS - EGI service to update and manage DNS records for cloud resources.
+        - Infrastructure Manager:
+            icon: https://www.google.com/s2/favicons?domain=im.egi.eu&sz=32
+            href: https://im.egi.eu/
+            description: Infrastructure Manager - EGI Cloud orchestrator to deploy and configure complex virtual infrastructures.
 
     - Applications & Platforms (SaaS):
         - EGI Notebooks:
@@ -33,21 +33,21 @@ config:
             description: DIRAC - manage and schedule workloads across EGI resources.
 
     - Data & Storage Services:
+        - EGI Artefact Registry:
+            icon: harbor.png
+            href: https://registry.egi.eu/
+            description: Harbor - Store, share and distribute containers and software packages securely.
         - EGI DataHub:
             icon: https://www.google.com/s2/favicons?domain=datahub.egi.eu&sz=32
             href: https://datahub.egi.eu/ozw/onezone/i#/login
             description: Onedata - Distributed data platform to share, replicate and access scientific datasets across European infrastructures.
-        - Vault:
+        - EGI Secrets Store:
             icon: vault.png
             href: https://vault.services.fedcloud.eu:8200/ui/vault/auth?with=userpass
             description: Vault - Protect and store user secrets, credentials and sensitive information.
-        - Harbor:
-            icon: harbor.png
-            href: https://registry.egi.eu/
-            description: Harbor - Store, share and distribute containers and software packages securely.
 
     - Identity & VO Management:
-        - Check-in:
+        - EGI Check-in:
             icon: keycloak.png
             href: https://aai.egi.eu/
             description: Keycloak - EGI Authentication & Authorization Infrastructure providing secure federated access to EGI services.
@@ -57,28 +57,24 @@ config:
             description: Operations Portal - Browse and search the directory of Virtual Organizations supported by EGI.
 
     - Monitoring & Accounting:
-        - Monitoring:
-            icon: https://www.google.com/s2/favicons?domain=argoeu.github.io&sz=32
-            href: https://argo.egi.eu/
-            description: Argo - Service to monitor availability, reliability and operational status of EGI sites and services.
         - Accounting Portal:
             icon: https://cdn.egi.eu/app/uploads/2022/06/egi-icon-high-throughput-compute.png
             href: https://accounting.egi.eu/
             description: Accounting - Portal to explore, filter and analyze resource usage across the EGI infrastructure.
-        - GOCDB:
-            icon: https://www.google.com/s2/favicons?domain=goc.egi.eu&sz=32
-            href: https://goc.egi.eu/
-            description: GOCDB - Configuration database collecting and managing service and site information for the EGI federation.
         - Downtimes:
             icon: https://www.google.com/s2/favicons?domain=operations-portal.egi.eu&sz=32
             href: https://operations-portal.egi.eu/downtimes/a/timeline
             description: Operations Portal - Monitor real-time and scheduled maintenance for EGI services.
+        - GOCDB:
+            icon: https://www.google.com/s2/favicons?domain=goc.egi.eu&sz=32
+            href: https://goc.egi.eu/
+            description: GOCDB - Configuration database collecting and managing service and site information for the EGI federation.
+        - Monitoring:
+            icon: https://www.google.com/s2/favicons?domain=argoeu.github.io&sz=32
+            href: https://argo.egi.eu/
+            description: Argo - Service to monitor availability, reliability and operational status of EGI sites and services.
 
     - Support & Documentation:
-        - EGI Helpdesk:
-            icon: https://www.google.com/s2/favicons?domain=helpdesk.ggus.eu&sz=32
-            href: https://helpdesk.ggus.eu/
-            description: Centralized support service for technical requests, incident reports and user assistance tickets.
         - Documentation:
             icon: https://www.google.com/s2/favicons?domain=docs.egi.eu&sz=32
             href: https://docs.egi.eu/
@@ -87,6 +83,10 @@ config:
             icon: slack.png
             href: https://egifedcloud.slack.com
             description: Community channel for announcements, discussions and collaborative support among EGI users.
+        - EGI Helpdesk:
+            icon: https://www.google.com/s2/favicons?domain=helpdesk.ggus.eu&sz=32
+            href: https://helpdesk.ggus.eu/
+            description: Centralized support service for technical requests, incident reports and user assistance tickets.
 
   widgets.yaml: |
   bookmarks.yaml: |
@@ -155,7 +155,6 @@ config:
         }
       });
     });
-
 
   custom.css: |
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
