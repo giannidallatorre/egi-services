@@ -51,10 +51,10 @@ config:
             icon: keycloak.png
             href: https://aai.egi.eu/
             description: Keycloak - EGI Authentication & Authorization Infrastructure providing secure federated access to EGI services.
-        - Operations Portal:
+        - Virtual Organization List (VOs):
             icon: https://www.google.com/s2/favicons?domain=operations-portal.egi.eu&sz=32
-            href: https://operations-portal.egi.eu/
-            description: Operations Portal - VO management platform for VO administration, broadcasts, downtimes, dashboards, metrics, SLA tracking, and VO lists.
+            href: https://operations-portal.egi.eu/vo/a/list
+            description: Operations Portal - Browse and search the directory of Virtual Organizations supported by EGI.
 
     - Monitoring & Accounting:
         - Monitoring:
@@ -69,6 +69,10 @@ config:
             icon: https://www.google.com/s2/favicons?domain=goc.egi.eu&sz=32
             href: https://goc.egi.eu/
             description: GOCDB - Configuration database collecting and managing service and site information for the EGI federation.
+        - Downtimes:
+            icon: https://www.google.com/s2/favicons?domain=operations-portal.egi.eu&sz=32
+            href: https://operations-portal.egi.eu/downtimes/a/timeline
+            description: Operations Portal - Monitor real-time and scheduled maintenance for EGI services.
 
     - Support & Documentation:
         - EGI Helpdesk:
