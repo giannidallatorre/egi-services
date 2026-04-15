@@ -255,6 +255,8 @@ ingress:
     - secretName: homepage-tls
       hosts:
         - home.cloud.egi.eu
+    - secretName: homepage-legacy-tls
+      hosts:
         - homepage.dyn.cloud.e-infra.cz
   hosts:
     - host: home.cloud.egi.eu
