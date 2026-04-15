@@ -61,6 +61,20 @@ kubectl rollout restart deployment homepage -n torre-ns
 ---
 *Maintained by the EGI Cloud Team.*
 
+## Local Development (Preview)
+
+You can run a local instance of the dashboard to preview changes before deploying:
+
+```bash
+# Prepare configuration and start the container
+make dev
+
+# Cleanup local containers and artifacts
+make clean
+```
+
+The dashboard will be available at `http://localhost:3000`.
+
 ## Development & Automation
 
 ### Automated Workflow (Recommended)
