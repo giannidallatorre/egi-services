@@ -116,7 +116,6 @@ config:
       saturate: 20
       brightness: 255
       opacity: 5
-    color: slate
 
   custom.js: |
     // Wait for the DOM to be fully loaded
@@ -229,6 +228,14 @@ config:
     /* Custom Scrollbar */
     ::-webkit-scrollbar-thumb {
       background: var(--egi-blue) !important;
+    }
+
+    /* Force 3 columns on Desktop, maintain stacking on Mobile */
+    @media (min-width: 1024px) {
+      #services > .services-group {
+        flex-basis: 33.333333% !important;
+        max-width: 33.333333% !important;
+      }
     }
 
   kubernetes.yaml: |
