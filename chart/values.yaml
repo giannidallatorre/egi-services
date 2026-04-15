@@ -1,80 +1,78 @@
 config:
   services.yaml: |
     - Compute & Cloud Orchestration:
-        - Rancher:
+        - Cloud Container Compute:
             icon: rancher.png
             href: https://rancher.cloud.e-infra.cz/dashboard/
-            description: EGI Container Compute, manage and orchestrate distributed applications on EGI cloud clusters.
+            description: **Rancher** - manage and orchestrate distributed applications on EGI cloud clusters.
         - Infrastructure Manager:
             icon: https://www.google.com/s2/favicons?domain=im.egi.eu&sz=32
             href: https://im.egi.eu/
-            description: EGI Cloud orchestrator to deploy and configure complex virtual infrastructures.
-        - OpenStack Provider Dashboards:
+            description: **Infrastructure Manager** - EGI Cloud orchestrator to deploy and configure complex virtual infrastructures.
+        - Cloud Compute:
             icon: openstack.png
             href: https://dashboard.cloud.egi.eu/
-            description: Access to the OpenStack dashboards of the EGI FedCloud providers.
+            description: **OpenStack** - Access to the OpenStack dashboards of the EGI FedCloud providers.
         - Dynamic DNS:
             icon: https://www.google.com/s2/favicons?domain=fedcloud.eu&sz=32
             href: https://nsupdate.fedcloud.eu/
-            description: EGI Dynamic DNS service to update and manage DNS records for cloud resources.
+            description: **Dynamic DNS** - EGI service to update and manage DNS records for cloud resources.
 
     - Applications & Platforms (SaaS):
         - EGI Notebooks:
             icon: jupyter.png
             href: https://notebooks.egi.eu/
-            description: Interactive Jupyter environment for scientific data analysis, visualization and collaborative sharing.
+            description: **Jupyter** - Interactive environment for scientific data analysis, visualization and collaborative sharing.
         - EGI Replay:
             icon: https://www.google.com/s2/favicons?domain=mybinder.org&sz=32
             href: https://replay.notebooks.egi.eu/
-            description: Create interactive documents with live code, visualisations and text.
-        - EGI Workload Manager:
+            description: **Binder** - Create interactive documents with live code, visualisations and text.
+        - Workload Manager:
             icon: https://www.google.com/s2/favicons?domain=dirac.egi.eu&sz=32
             href: https://dirac.egi.eu/
-            description: EGI Workload Manager for managing and scheduling workloads across EGI resources.
+            description: **DIRAC** - manage and schedule workloads across EGI resources.
 
     - Data & Storage Services:
-        - DataHub:
+        - EGI DataHub:
             icon: https://www.google.com/s2/favicons?domain=datahub.egi.eu&sz=32
             href: https://datahub.egi.eu/ozw/onezone/i#/login
-            description: EGI DataHub - OneData. Distributed data platform to share, replicate and access scientific datasets across European infrastructures.
+            description: **Onedata** - Distributed data platform to share, replicate and access scientific datasets across European infrastructures.
         - Vault:
             icon: vault.png
             href: https://vault.services.fedcloud.eu:8200/ui/vault/auth?with=userpass
-            description: EGI Secret store manager, protect and store user secrets, credentials and sensitive information.
+            description: **Vault** - Protect and store user secrets, credentials and sensitive information.
         - Harbor:
             icon: harbor.png
             href: https://registry.egi.eu/
-            description: EGI Artefact Registry, store, share and distribute containers and software packages securely.
+            description: **Harbor** - Store, share and distribute containers and software packages securely.
 
     - Identity & VO Management:
-        - Keycloak:
+        - Check-in:
             icon: keycloak.png
             href: https://aai.egi.eu/
-            description: EGI Authentication & Authorization Infrastructure providing secure federated access to EGI services.
+            description: **Keycloak** - EGI Authentication & Authorization Infrastructure providing secure federated access to EGI services.
         - Operations Portal:
             icon: https://www.google.com/s2/favicons?domain=operations-portal.egi.eu&sz=32
             href: https://operations-portal.egi.eu/
-            description: VO management platform for VO administration, broadcasts, downtimes, dashboards, metrics, SLA tracking, and VO lists.
+            description: **Operations Portal** - VO management platform for VO administration, broadcasts, downtimes, dashboards, metrics, SLA tracking, and VO lists.
         - Your Virtual Organization:
             icon: https://www.google.com/s2/favicons?domain=dashboard.appdb.egi.eu&sz=32
             href: https://dashboard.appdb.egi.eu/vmops
-            description: Personal dashboard to manage user's Virtual Organizations and related resources across the infrastructure.
+            description: **AppDB** - Personal dashboard to manage user's Virtual Organizations and related resources across the infrastructure.
 
     - Monitoring & Accounting:
-        - EGI ARGO Monitoring:
-            #icon: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/EGI_Logo.svg/999px-EGI_Logo.svg.png
+        - Monitoring:
             icon: https://www.google.com/s2/favicons?domain=argoeu.github.io&sz=32
             href: https://argo.egi.eu/
-            description: Service to monitor availability, reliability and operational status of EGI sites and services.
-        - EGI Accounting Portal:
+            description: **Argo** - Service to monitor availability, reliability and operational status of EGI sites and services.
+        - Accounting Portal:
             icon: https://cdn.egi.eu/app/uploads/2022/06/egi-icon-high-throughput-compute.png
-            #icon: https://www.google.com/s2/favicons?domain=accounting.egi.eu&sz=32
             href: https://accounting.egi.eu/
-            description: Portal to explore, filter and analyze resource usage across the EGI infrastructure.
+            description: **Accounting** - Portal to explore, filter and analyze resource usage across the EGI infrastructure.
         - GOCDB:
             icon: https://www.google.com/s2/favicons?domain=goc.egi.eu&sz=32
             href: https://goc.egi.eu/
-            description: Configuration database collecting and managing service and site information for the EGI federation.
+            description: **GOCDB** - Configuration database collecting and managing service and site information for the EGI federation.
 
     - Support & Documentation:
         - EGI Helpdesk:
