@@ -42,7 +42,7 @@ config:
             href: https://datahub.egi.eu/ozw/onezone/i#/login
             description: Onedata - Distributed data platform to share, replicate and access scientific datasets across European infrastructures.
         - EGI Secrets Store:
-            icon: vault.png
+            icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/hashicorp-vault.png
             href: https://vault.services.fedcloud.eu:8200/ui/vault/auth?with=userpass
             description: Vault - Protect and store user secrets, credentials and sensitive information.
 
@@ -75,7 +75,7 @@ config:
             description: Argo - Service to monitor availability, reliability and operational status of EGI sites and services.
 
     - Support & Documentation:
-        - Documentation:
+        - EGI Documentation:
             icon: https://www.google.com/s2/favicons?domain=docs.egi.eu&sz=32
             href: https://docs.egi.eu/
             description: Knowledge portal with guides, tutorials and manuals for EGI users and service providers.
