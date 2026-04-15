@@ -236,7 +236,7 @@ config:
     }
 
   kubernetes.yaml: |
-    mode: cluster
+    mode: none
 
 image:
   registry: ghcr.io
