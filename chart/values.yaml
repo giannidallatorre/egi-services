@@ -1,3 +1,5 @@
+replicaCount: 1
+
 config:
   services.yaml: |
     - Compute & Cloud Orchestration:
