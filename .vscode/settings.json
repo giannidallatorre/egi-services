@@ -1,0 +1,5 @@
+{
+  "files.associations": {
+    "**/chart/templates/**/*.yaml": "plaintext"
+  }
+}
